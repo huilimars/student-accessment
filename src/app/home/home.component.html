@@ -1,0 +1,23 @@
+<div class="container">
+  <table class="table table-bordered" *ngIf="students">
+    <thead>
+        <tr>
+          <th class="header" colspan="4">Students Result Board</th>
+        </tr>
+        <tr>
+          <th class="subheader">Student Name</th>
+          <th class="subheader">Roll Number</th>
+          <th class="subheader">Total Marks</th>
+          <th class="subheader">Status</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let student of students | orderBy:'name'; index as i">
+      <tr *ngIf="i <= 15"  class="{{ student.status }}">
+      <td class="capitalize">{{ student.name }}</td>
+      <td>{{ student.rollNumber }}</td>
+      <td>{{ student.total }}</td>
+      <td class="capitalize">{{ student.status }}</td>
+      </tr>    
+    </tbody>
+  </table>
+</div>

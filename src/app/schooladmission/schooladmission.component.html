@@ -1,0 +1,86 @@
+<div class="container">
+<div class="row">
+    <div class="col-sm-6">
+    <h2>School Admission Form</h2>
+    <form novalidate #submissionForm="ngForm" (ngSubmit)= "onFormSubmit(submissionForm)">
+        <!-- Name -->
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="firstname" placeholder="Name" [(ngModel)] = "student.firstname" #firstname="ngModel" id="inputFirstname" pattern="^\d*[a-zA-Z][a-zA-Z\d\s]*$" maxlength="20" required>
+            <div *ngIf="firstname.invalid && ( firstname.dirty ||firstname.touched)" class="col-sm-6 alert alert-danger">
+                <div *ngIf = "firstname.errors?.required">
+                    Name field can't be blank
+                </div>
+                <div *ngIf = "firstname.errors?.pattern && firstname.touched">
+                    The name must be in alphabets.
+                </div>
+            </div>
+        </div>
+    
+        <!-- Last Name -->
+        <div class="form-group">
+            <label for="lastname">Last Name</label>
+            <input type="text" name="lastname" value="" placeholder="Last Name" [(ngModel)] = "student.lastname" #lastname="ngModel" id="inputLastname" pattern="^\d*[a-zA-Z][a-zA-Z\d\s]*$" maxlength="20" required>
+            <div *ngIf="lastname.invalid && ( lastname.dirty || lastname.touched)" class="col-sm-6 alert alert-danger">
+                <div *ngIf = "lastname.errors?.required">
+                    Last name field can't be blank
+                </div>
+                <div *ngIf = "lastname.errors?.pattern && lastname.touched">
+                    Last name must be in alphabets.
+                </div>
+            </div>
+        </div>
+    
+        <!-- Class -->
+        <div class="form-group">
+            <label for="class">Class</label>
+            <input type="text" name="class" value="" placeholder="Class" [(ngModel)] = "student.class" #class="ngModel" id="inputClass" pattern="^(\d+[A-Za-z_-]+|[A-Za-z_-]+\d+)[A-Za-z_-\d]*$" required>
+            <div *ngIf="class.invalid && ( class.dirty || class.touched)" class="col-sm-6 alert alert-danger">
+                <div *ngIf = "class.errors?.required">
+                    Class field can't be blank
+                </div>
+                <div *ngIf = "class.errors?.pattern && class.touched">
+                    Class must be in alphanumeric.
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Year of Passing -->
+        <div class="form-group">
+            <label for="yearofpassing">Year of Passing</label>
+            <input type="text" name="yearofpassing" maxlength="4" custommax="2017" placeholder="Year of Passing" [(ngModel)] = "student.yearofpassing" #yearofpassing="ngModel" id="inputYearofPassing" pattern="^1[0-9][0-9]\d|20[0-1][0-7]$" required>
+        </div>
+        <div *ngIf="yearofpassing.invalid && ( yearofpassing.dirty || yearofpassing.touched)" class="col-sm-6 alert alert-danger">
+            <div *ngIf = "yearofpassing.errors?.required">
+                Year of Passing field can't be blank
+            </div>
+            <div *ngIf = "yearofpassing.errors?.pattern && yearofpassing.touched">
+                Year of Passing must be in number and should not be later than year 2017.
+            </div>
+        </div>
+    
+        <!-- Percentage of Marks -->
+        <div class="form-group">
+            <label for="percentageofmarks">Marks(%)</label>
+            <input type="text" name="percentageofmarks" placeholder="Marks" [(ngModel)] = "student.percentageofmarks" #percentageofmarks="ngModel" id="inputPercentageofMarks" pattern="^(?=\d*[1-9])\d+$" required>
+        </div>
+        <div *ngIf="percentageofmarks.invalid && ( percentageofmarks.dirty || percentageofmarks.touched)" class="col-sm-6 alert alert-danger">
+            <div *ngIf = "percentageofmarks.errors?.required">
+                Marks field can't be blank
+            </div>
+            <div *ngIf = "percentageofmarks.touched">
+                Marks must be in number.
+            </div>
+        </div>
+    
+    
+        <button type="submit" class="btn btn-success" [disabled]="!submissionForm.form.valid"> Submit</button>
+    </form>
+    
+    
+
+</div>
+
+</div>
+</div>
